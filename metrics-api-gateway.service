@@ -8,6 +8,7 @@ WorkingDirectory=/home/quantum0/metrics-api-gateway
 User=root
 Restart=on-failure
 ExecStart=/usr/bin/python3 /home/quantum0/metrics-api-gateway/main.py
+Environment=PYTHONUNBUFFERED=1
 
 [Install]
 WantedBy=multi-user.target
