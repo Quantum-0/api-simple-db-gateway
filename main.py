@@ -44,17 +44,18 @@ app.config["DEBUG"] = True
 
 
 @app.route('/metrics', methods=['POST'])
-def controller_create():
+def add_metrics_handler():
     print(request.json)
     temp = request.json.get('temperature')
     hum = request.json.get('humidity')
     pres = request.json.get('pressure')
     co2 = request.json.get('co2')
-    source = request.json.get('source')
-    metric = Metric('Home Test Sensor', temp=temp, hum=hum, pressure=pres, co2=co2, source=source)
+    source = request.json.get('device')
+    metric = Metric('Home Test Sensor', temp=temp, hum=hum, pressure=pres, co2=co2) # , source=source)
     session.add(metric)
     session.commit()
     print(metric)
+    return {}, 200
 
 
 if __name__ == '__main__':
