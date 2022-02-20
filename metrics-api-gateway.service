@@ -1,0 +1,13 @@
+[Unit]
+Description=Simple API Gateway Metrics
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/quantum0/metrics-api-gateway
+User=root
+Restart=on-failure
+ExecStart=/usr/bin/python3 /home/quantum0/metrics-api-gateway/main.py
+
+[Install]
+WantedBy=multi-user.target
