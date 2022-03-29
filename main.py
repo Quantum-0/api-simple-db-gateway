@@ -1,8 +1,21 @@
+import sentry_sdk
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, create_engine, Float
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from config import DB_URL, LOCAL_PORT
+from config import DB_URL, LOCAL_PORT, SENTRY_URL
+from sentry_sdk.integrations.flask import FlaskIntegration
+
+sentry_sdk.init(
+    dsn=SENTRY_URL,
+    integrations=[FlaskIntegration()],
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0
+)
+
 
 
 Base = declarative_base()
