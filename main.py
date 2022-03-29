@@ -40,7 +40,7 @@ session = Session()
 from flask import Flask, request
 
 app = Flask(__name__)
-app.config["DEBUG"] = True
+app.config["DEBUG"] = False
 
 
 @app.route('/metrics', methods=['POST'])
@@ -54,7 +54,7 @@ def add_metrics_handler():
     metric = Metric('Home Test Sensor', temp=temp, hum=hum, pressure=pres, co2=co2) # , source=source)
     session.add(metric)
     session.commit()
-    print(metric)
+    # print(metric)
     return {}, 200
 
 
